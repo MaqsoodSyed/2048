@@ -7,12 +7,13 @@ void mov_func(int p[3][3],int i0,int i1,int i2,int j0,int j1,int j2,bool sw);
 
 int main()
 {
-    int i, j, s, a[3][3]={{0,7,9},{7,7,7},{7,7,5}};
+    int i, j, s, a[3][3]={{0,0,0},{0,2,0},{0,0,0}};
     char inp;
 display(a);
 
+
     //Step1: Insert 2 at Random place
-    srand(time(0));
+    step1: srand(time(0));
     s=(rand()%9)/3;
     i=s/3; //Column value
     j=s%3; //Row value
@@ -46,7 +47,6 @@ display(a);
         cout<<"Enter a valid input\n"<<endl;
         goto step2;
     }
-
     system("cls");
     display(a);
 
@@ -69,6 +69,13 @@ display(a);
     }
 
     //Step5: Exit condition
+    for(int i=0; i<=2; i++){
+        for(int j=0; j<=2; j++){
+            if(a[i][j]==0){
+                goto step1;
+            }
+        }
+    }
     cout<<"\nGame over";
     return 0;
 }
@@ -81,6 +88,8 @@ void mov_func(int p[3][3],int i0,int i1,int i2,int j0,int j1,int j2,bool sw){
                 i=j;
                 j=temp;
             }
+
+            //addition comnditions
             if(p[i+i2][j+j2]==p[i+i1][j+j1]){
                 p[i+i2][j+j2]=p[i+i2][j+j2]*2;
                 p[i+i1][j+j1]=p[i+i0][j+j0];
@@ -92,6 +101,34 @@ void mov_func(int p[3][3],int i0,int i1,int i2,int j0,int j1,int j2,bool sw){
                 p[i+i0][j+j0]=0;
                 cout<<" c2" <<endl;
             }
+            if(p[i+i1][j+j1]==0){
+                if(p[i+i2][j+j2]==p[i+i0][j+j0]){
+                p[i+i2][j+j2]=p[i+i2][j+j2]*2;
+                p[i+i0][j+j0]=0;
+                cout<<" c1" <<endl;
+                }
+            }
+
+
+            //moving conditions
+            if(p[i+i2][j+j2]==0){
+                if(p[i+i1][j+j1]==0){
+                    p[i+i1][j+j1]= p[i+i0][j+j0];
+                    p[i+i0][j+j0]=0;
+                }
+                p[i+i2][j+j2]= p[i+i1][j+j1];
+                p[i+i1][j+j1]=p[i+i0][j+j0];
+                p[i+i0][j+j0]=0;
+                cout<<" c1dgdf" <<endl;
+            }
+            else if(p[i+i1][j+j1]==0){
+                p[i+i1][j+j1]=p[i+i0][j+j0];
+                p[i+i0][j+j0]=0;
+                cout<<" c2" <<endl;
+            }
+            cout<<" c2" <<endl;
+
+
             if(sw==1){
                 int temp=i;
                 i=j;
