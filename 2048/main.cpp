@@ -3,7 +3,7 @@
 #include <ctime>
 using namespace std;
 void display(int p[3][3]);
-void d(int p[3][3]);
+void mov_func(int p[3][3],int i0,int i1,int i2,int j0,int j1,int j2);
 
 int main()
 {
@@ -59,8 +59,7 @@ display(a);
     }
     else if((inp=='D' || inp=='d' )){
         cout<<"d func will be executed\n"<<endl;
-        d(a);
-
+        mov_func(a,0,1,2,0,0,0);
     }
     else{
         cout<<"l func will be executed\n"<<endl;
@@ -71,19 +70,18 @@ display(a);
     return 0;
 }
 
-void d(int p[3][3]){
+void mov_func(int p[3][3],int i0,int i1,int i2,int j0,int j1,int j2){
         for(int j=0; j<=2; j++){
             int i=0;
-            if(p[i+2][j]==p[i+1][j]){
-                p[i+2][j]=p[i+2][j]*2;
-                p[i+1][j]=p[i][j];
-                p[i][j]=0;
+            if(p[i+i2][j+j2]==p[i+i1][j+j1]){
+                p[i+i2][j+2]=p[i+i2][j+j2]*2;
+                p[i+i1][j+j1]=p[i+i0][j+j0];
+                p[i+i0][j+j0]=0;
             }
-            else if(p[i+1][j]==p[i][j]){
-                p[i+1][j]=p[i+1][j]*2;
-                p[i][j]=0;
+            else if(p[i+i1][j+j1]==p[i+i0][j+j0]){
+                p[i+i1][j+j1]=p[i+i1][j+j1]*2;
+                p[i+i0][j+j0]=0;
             }
-
         }
         cout<<"disp"<<endl;
         display(p);
