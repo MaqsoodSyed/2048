@@ -53,7 +53,15 @@ display(a);
     if((inp=='U' || inp=='u' )){
         cout<<"up func will be executed\n"<<endl;
     }
-
+    else if((inp=='R' || inp=='r' )){
+        cout<<"r func will be executed\n"<<endl;
+    }
+    else if((inp=='D' || inp=='d' )){
+        cout<<"d func will be executed\n"<<endl;
+    }
+    else{
+        cout<<"l func will be executed\n"<<endl;
+    }
 
     //Step5: Exit condition
     cout<<"\nGame over";
