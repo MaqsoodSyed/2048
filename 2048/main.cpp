@@ -7,7 +7,7 @@ void mov_func(int p[3][3],int i0,int i1,int i2,int j0,int j1,int j2);
 
 int main()
 {
-    int i, j, s, a[3][3]={{0,8,9},{7,7,9},{7,8,5}};
+    int i, j, s, a[3][3]={{0,7,9},{7,7,7},{7,7,5}};
     char inp;
 display(a);
 
@@ -53,6 +53,7 @@ display(a);
     //Step4: Decision function
     if((inp=='U' || inp=='u' )){
         cout<<"up func will be executed\n"<<endl;
+        mov_func(a,2,1,0,0,0,0);
     }
     else if((inp=='R' || inp=='r' )){
         cout<<"r func will be executed\n"<<endl;
@@ -74,13 +75,15 @@ void mov_func(int p[3][3],int i0,int i1,int i2,int j0,int j1,int j2){
         for(int j=0; j<=2; j++){
             int i=0;
             if(p[i+i2][j+j2]==p[i+i1][j+j1]){
-                p[i+i2][j+2]=p[i+i2][j+j2]*2;
+                p[i+i2][j+j2]=p[i+i2][j+j2]*2;
                 p[i+i1][j+j1]=p[i+i0][j+j0];
                 p[i+i0][j+j0]=0;
+                cout<<" c1" <<endl;
             }
             else if(p[i+i1][j+j1]==p[i+i0][j+j0]){
                 p[i+i1][j+j1]=p[i+i1][j+j1]*2;
                 p[i+i0][j+j0]=0;
+                cout<<" c2" <<endl;
             }
         }
         cout<<"disp"<<endl;
@@ -90,9 +93,9 @@ void mov_func(int p[3][3],int i0,int i1,int i2,int j0,int j1,int j2){
 void display(int p[3][3]){
     for(int i=0; i<=2; i++){
         for(int j=0; j<=2; j++){
-            cout << p[i][j] <<" ";
+            cout << p[i][j] <<"\t";
         }
-        cout<<endl;
+        cout<<"\n"<<endl;
     }
 }
 
