@@ -1,7 +1,14 @@
 #include <iostream>
 #include <stdlib.h>
 #include <ctime>
+#include <conio.h>
 using namespace std;
+
+#define KEY_UP 72
+#define KEY_DOWN 80
+#define KEY_LEFT 75
+#define KEY_RIGHT 77
+
 void display(int p[3][3]);
 void mov_func(int p[3][3],int i0,int i1,int i2,int j0,int j1,int j2,bool sw);
 
@@ -10,8 +17,8 @@ int main()
     int i, j, s, a[3][3]={{0,0,0},{0,2,0},{0,0,0}};
     char inp;
 
-    cout<<"Directions to use:- \n U-->Up \n R-->Right \n D-->Down \n L-->Left\n"<<endl;
-    _sleep(3000);
+    cout<<"Controls: \n\n\n  \t ^  \n\n <\t v  \t > \n"<<endl;
+    _sleep(1500);
     system("cls");
 
     //Step1: Insert 2 at Random place
@@ -38,24 +45,29 @@ int main()
     step2: system("cls");
     display(a);
 
-    //Step3: Input decision making
-    step3: cin >> inp;
-    if(!(inp=='U' || inp=='R' || inp=='D' || inp=='L' || inp=='r' || inp=='u' || inp=='d' || inp=='l' )){
-        cout<<"!!Enter a valid input!!\n"<<endl;
-        goto step3;
-    }
-    system("cls");
-    display(a);
+    //Step3: Input direction
 
-    //Step4: Decision function
-    if((inp=='U' || inp=='u' ))
-        mov_func(a,2,1,0,0,0,0,0);
-    else if((inp=='R' || inp=='r' ))
-        mov_func(a,0,0,0,0,1,2,1);
-    else if((inp=='D' || inp=='d' ))
-        mov_func(a,0,1,2,0,0,0,0);
-    else
-        mov_func(a,0,0,0,2,1,0,1);
+        int c = 0;
+        c=getch();
+        switch(c) {
+        case KEY_UP:
+            cout << endl << "Up" << endl;//key up
+            mov_func(a,2,1,0,0,0,0,0);
+            break;
+        case KEY_DOWN:
+            cout << endl << "Down" << endl;   // key down
+            mov_func(a,0,1,2,0,0,0,0);
+            break;
+        case KEY_LEFT:
+            cout << endl << "Left" << endl;  // key left
+            mov_func(a,0,0,0,2,1,0,1);
+            break;
+        case KEY_RIGHT:
+            cout << endl << "Right" << endl;  // key right
+            mov_func(a,0,0,0,0,1,2,1);
+            break;
+        }
+
 
     //Step5: Exit condition
     for(int i=0; i<=2; i++){
