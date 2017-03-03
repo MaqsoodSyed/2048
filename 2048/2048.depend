@@ -1,5 +1,12 @@
 # depslib dependency file v1.0
-1488463947 source:z:\github\2048\2048\2048\main.cpp
+3932160 
+
+1488582163 source:z:\github\2048\2048\2048\main.cpp
+	<iostream>
+	<stdlib.h>
+	<ctime>
+
+1488117487 ent of bc869ab... 2048 completed.
 	<iostream>
 	<stdlib.h>
 	<ctime>

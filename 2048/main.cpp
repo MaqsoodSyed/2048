@@ -1,14 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <ctime>
-#include <conio.h>
 using namespace std;
-
-#define KEY_UP 72
-#define KEY_DOWN 80
-#define KEY_LEFT 75
-#define KEY_RIGHT 77
-
 void display(int p[3][3]);
 void mov_func(int p[3][3],int i0,int i1,int i2,int j0,int j1,int j2,bool sw);
 
@@ -17,8 +10,8 @@ int main()
     int i, j, s, a[3][3]={{0,0,0},{0,2,0},{0,0,0}};
     char inp;
 
-    cout<<"Controls: \n\n\n  \t ^  \n\n <\t v  \t > \n"<<endl;
-    _sleep(1500);
+    cout<<" CONTROLS: \n\n W or 8 --> Up \n D or 6 --> Right \n S or 5 --> Down \n A or 4 --> Left\n"<<endl;
+    _sleep(5000);
     system("cls");
 
     //Step1: Insert 2 at Random place
@@ -26,44 +19,43 @@ int main()
     s=(rand()%9)/3;
     i=s/3; //Column value
     j=s%3; //Row value
-    for(int j=0; j<=2; j++)
+    for(int q=0; q<=2; q++)
     {
-        for(int i=0; i<=2; i++)
+        for(int p=0; p<=2; p++)
         {
             if(a[i][j]==0){
                 a[i][j]=2;
                 goto step2;
             }
+            j++;
+            j=j%3;
         }
+        i++;
+        i=i%3;
     }
 
     //Step2: Display
     step2: system("cls");
     display(a);
 
-    //Step3: Input direction
+    //Step3: Input decision making
+    step3: cin >> inp;
+    if(!(inp=='w' ||inp=='8' || inp=='d' || inp=='6' || inp=='a' || inp=='5' || inp=='u' || inp=='d' || inp=='4' )){
+        cout<<"!!Enter a valid input!!\n"<<endl;
+        goto step3;
+    }
+    system("cls");
+    display(a);
 
-        int c = 0;
-        c=getch();
-        switch(c) {
-        case KEY_UP:
-            cout << endl << "Up" << endl;//key up
-            mov_func(a,2,1,0,0,0,0,0);
-            break;
-        case KEY_DOWN:
-            cout << endl << "Down" << endl;   // key down
-            mov_func(a,0,1,2,0,0,0,0);
-            break;
-        case KEY_LEFT:
-            cout << endl << "Left" << endl;  // key left
-            mov_func(a,0,0,0,2,1,0,1);
-            break;
-        case KEY_RIGHT:
-            cout << endl << "Right" << endl;  // key right
-            mov_func(a,0,0,0,0,1,2,1);
-            break;
-        }
-
+    //Step4: Decision function
+    if((inp=='w' || inp=='8' ))
+        mov_func(a,2,1,0,0,0,0,0);
+    else if((inp=='d' || inp=='6' ))
+        mov_func(a,0,0,0,0,1,2,1);
+    else if((inp=='s' || inp=='5' ))
+        mov_func(a,0,1,2,0,0,0,0);
+    else
+        mov_func(a,0,0,0,2,1,0,1);
 
     //Step5: Exit condition
     for(int i=0; i<=2; i++){
