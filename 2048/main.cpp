@@ -26,19 +26,15 @@ int main()
     s=(rand()%9)/3;
     i=s/3; //Column value
     j=s%3; //Row value
-    for(int q=0; q<=2; q++)
+    for(int j=0; j<=2; j++)
     {
-        for(int p=0; p<=2; p++)
+        for(int i=0; i<=2; i++)
         {
             if(a[i][j]==0){
                 a[i][j]=2;
                 goto step2;
             }
-            j++;
-            j=j%3;
         }
-        i++;
-        i=i%3;
     }
 
     //Step2: Display
